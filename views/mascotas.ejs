@@ -3,6 +3,10 @@
     <div class="container">
         <h1 class="text-primary">Vista de las mascotas</h1>
 
+        <div class="d-grid gap-2">
+            <a href="./mascotas/crear" class="btn  btn-success" type="button">Crear nueva mascota</a>
+        </div>
+
         <table class="table">
             <thead>
                 <tr>
@@ -17,14 +21,20 @@
                 <% if (arrayMascotas.length> 0) { %>
                     <% arrayMascotas.forEach(mascota=> { %>
                         <tr>
-                            <th scope="row"><%= mascota.id %></th>
-                            <td><%= mascota.nombre %></td>
-                            <td><%= mascota.descripcion %></td>
+                            <th scope="row">
+                                <%= mascota.id %>
+                            </th>
+                            <td>
+                                <%= mascota.nombre %>
+                            </td>
+                            <td>
+                                <%= mascota.descripcion %>
+                            </td>
                             <td></td>
                         </tr>
-                    <% }) %>
-                <% } %>
-                
+                        <% }) %>
+                            <% } %>
+
             </tbody>
         </table>
     </div>
