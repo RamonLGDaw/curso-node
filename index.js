@@ -1,6 +1,13 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 require('dotenv').config()
+
+//Configuracion del body-parser
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 const puerto = process.env.PORT || 3000;
 const mongoose = require('mongoose');
