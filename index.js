@@ -2,15 +2,13 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 
-const puerto = process.env.PORT || 3500;
+const puerto = process.env.PORT || 3000;
 const mongoose = require('mongoose');
-const user = process.env.USUARIO;
-const password = process.env.PASSWORD;
-const bdname = process.env.BDNAME;
+
 
 //Conexion a base de datos
 
-const uri = `mongodb+srv://${user}:${password}@cluster0.n1h1nz9.mongodb.net/${bdname}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.USUARI}:${process.env.PASSWORD}@cluster0.n1h1nz9.mongodb.net/${process.env.BDNAME}?retryWrites=true&w=majority`;
 
 
 mongoose.connect(uri)
