@@ -32,4 +32,24 @@ router.post('/', async(req, res)=>{
     }
 })
 
+router.get('/:id', async(req, res)=>{
+
+    const id = req.params.id
+
+    try {
+        const mascotaDB = await mascota.findOne({_id: id})
+
+        res.render('detalle', {
+            mascota: mascotaDB,
+            error: false
+        })
+    } catch (error) {
+        console.log('error de lectura', error)
+        res.render('detalle', {
+            error: true,
+            mensaje: 'No se encuentra el id seleccionado'
+        })
+    }
+})
+
 module.exports = router;
