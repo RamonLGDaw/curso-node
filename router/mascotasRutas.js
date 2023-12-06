@@ -9,35 +9,35 @@ router.get('/', async (req, res) => {
         const arrayMascotasDB = await mascota.find()
         // console.log(arrayMascotasDB);
         res.render('mascotas', {
-                arrayMascotas : arrayMascotasDB
+            arrayMascotas: arrayMascotasDB
         })
     } catch (error) {
         console.log(error);
-    }   
+    }
 })
 
-router.get('/crear', (req, res)=>{
+router.get('/crear', (req, res) => {
     res.render('crear')
 })
 
-router.post('/', async(req, res)=>{
+router.post('/', async (req, res) => {
     const body = req.body;
-    try{
+    try {
         const mascotaDB = new mascota(body);
         await mascotaDB.save();
 
         res.redirect('/mascotas')
-    }catch(error){
+    } catch (error) {
         console.log(error)
     }
 })
 
-router.get('/:id', async(req, res)=>{
+router.get('/:id', async (req, res) => {
 
     const id = req.params.id
 
     try {
-        const mascotaDB = await mascota.findOne({_id: id})
+        const mascotaDB = await mascota.findOne({ _id: id })
 
         res.render('detalle', {
             mascota: mascotaDB,
@@ -49,6 +49,29 @@ router.get('/:id', async(req, res)=>{
             error: true,
             mensaje: 'No se encuentra el id seleccionado'
         })
+    }
+})
+
+router.delete('/:id', async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        const mascotaDB = await mascota.findByIdAndDelete({ _id: id })
+
+        if (mascotaDB) {
+            res.json({
+                estado: true,
+                mensaje: 'Eliminado!! Uooo!'
+            })
+        } else {
+            res.json({
+                estado: false,
+                mensaje: 'No se pudo eliminar.... Upsss'
+            })
+        }
+
+    } catch (error) {
+        console.log(error)
     }
 })
 
